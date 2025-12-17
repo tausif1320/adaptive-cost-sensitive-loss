@@ -148,18 +148,7 @@ In high-volume transaction systems, even small percentage improvements in missed
 
 ---
 
-## Why this project is relevant for Data Analyst / Data Scientist roles
 
-This project demonstrates the ability to:
-- Frame ML problems in **business terms**
-- Design evaluation metrics aligned with **decision impact**
-- Handle extreme class imbalance realistically
-- Explain trade-offs instead of chasing vanity metrics
-- Build and evaluate models end-to-end
-
-Rather than optimizing for accuracy alone, this work focuses on **making better decisions**.
-
----
 
 ## How to run
 
