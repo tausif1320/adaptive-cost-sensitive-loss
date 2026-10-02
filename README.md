@@ -139,7 +139,7 @@ The project focuses on four questions:
 2. What happens when false negatives are considered more expensive than false positives?
 3. Does changing the model's training objective provide additional value compared with changing the decision threshold?
 4. How can ML results be translated into business-oriented decision metrics?
-Why This Problem Matters
+  Why This Problem Matters
 
 Consider a financial platform processing thousands or millions of transactions.
 
@@ -266,7 +266,7 @@ ROC-AUC
 
 ROC-AUC measures how well the model separates the two classes across different classification thresholds.
 
-PR-AUC
+## Pr-Auc
 
 Precision-Recall AUC is particularly useful for highly imbalanced classification because it focuses on the model's ability to identify the minority class while considering precision.
 
@@ -385,8 +385,7 @@ while:
 
 Transaction B
 
-Looks very similar to legitimate transactions
-Only subtle differences
+Looks very similar to legitimate transactions Only subtle differences
 
 → More difficult to classify
 
@@ -566,12 +565,7 @@ Experimental Results
 
 The threshold optimization experiment produced the following final test-set results.
 
-Model	Selected Threshold	Precision	Recall	F1	PR-AUC	False Positives	False Negatives	Business Cost
-Random Forest	0.12	0.6744	0.8878	0.7665	0.8570	42	11	152
-MLP + BCE	0.04	0.6222	0.8571	0.7210	0.7356	51	14	191
-MLP + Weighted BCE	0.98	0.6800	0.8673	0.7623	0.7191	40	13	170
-MLP + Adaptive Loss	0.55	0.5513	0.8776	0.6772	0.8015	70	12	190
-Understanding the Results
+Model	Selected Threshold	Precision	Recall	F1	PR-AUC	False Positives	False Negatives	Business Cost Random Forest	0.12	0.6744	0.8878	0.7665	0.8570	42	11	152 MLP + BCE	0.04	0.6222	0.8571	0.7210	0.7356	51	14	191 MLP + Weighted BCE	0.98	0.6800	0.8673	0.7623	0.7191	40	13	170 MLP + Adaptive Loss	0.55	0.5513	0.8776	0.6772	0.8015	70	12	190 Understanding the Results
 
 The main takeaway is not simply which model has the lowest number.
 
@@ -771,85 +765,10 @@ Project Architecture
                          Train/Test Split
                                   │
                                   ▼
-                       Train/Validation Split
-                                  │
-                    ┌─────────────┴─────────────┐
-                    │                           │
-                    ▼                           ▼
-             Baseline Models            Adaptive Model
-                    │                           │
-                    │                   Business Cost
-                    │                           +
-                    │                   Sample Difficulty
-                    │                           │
-                    └─────────────┬─────────────┘
-                                  │
-                                  ▼
-                         Probability Scores
-                                  │
-                                  ▼
-                      Validation Threshold
-                                  │
-                                  ▼
-                         Final Test Set
-                                  │
-                                  ▼
-                   ML + Business Evaluation
-                                  │
-                                  ▼
-                         Decision Analysis
-Repository Structure
-adaptive-cost-sensitive-loss/
-│
-├── data/
-│   └── raw/
-│       └── creditcard.csv
-│
-├── experiments/
-│   └── final_model_summary.csv
-│
-├── notebooks/
-│   ├── 01_data_overview.ipynb
-│   ├── 02_baseline_models.ipynb
-│   ├── 03_torch_baseline.ipynb
-│   ├── 04_results_summary.ipynb
-│   └── 05_threshold_vs_loss_experiment.ipynb
-│
-├── src/
-│   ├── __init__.py
-│   │
-│   ├── data/
-│   │   └── load_data.py
-│   │
-│   ├── losses/
-│   │   └── adaptive_cost_sensitive.py
-│   │
-│   └── models/
-│       ├── __init__.py
-│       └── mlp.py
-│
-├── requirements.txt
-├── README.md
-└── LICENSE
-Technology Stack
-Programming
-Python
-Data Processing
-Pandas
-NumPy
-Machine Learning
-Scikit-learn
-PyTorch
-Visualization
-Matplotlib
-Development
-Jupyter Notebook
-VS Code
-Git
-GitHub
-Installation
+Train/Validation Split │
+┌─────────────┴─────────────┐ │                           │ ▼                           ▼ Baseline Models            Adaptive Model │                           │ │                   Business Cost │                           + │                   Sample Difficulty │                           │ └─────────────┬─────────────┘ │ ▼ Probability Scores │ ▼ Validation Threshold │ ▼ Final Test Set │ ▼ ML + Business Evaluation │ ▼ Decision Analysis Repository Structure adaptive-cost-sensitive-loss/ │ ├── data/ │   └── raw/ │       └── creditcard.csv │ ├── experiments/ │   └── final_model_summary.csv │ ├── notebooks/ │   ├── 01_data_overview.ipynb │   ├── 02_baseline_models.ipynb │   ├── 03_torch_baseline.ipynb │   ├── 04_results_summary.ipynb │   └── 05_threshold_vs_loss_experiment.ipynb │ ├── src/ │   ├── __init__.py │   │ │   ├── data/ │   │   └── load_data.py │   │ │   ├── losses/ │   │   └── adaptive_cost_sensitive.py │   │ │   └── models/ │       ├── __init__.py │       └── mlp.py │ ├── requirements.txt ├── README.md └── LICENSE Technology Stack Programming Python Data Processing Pandas NumPy Machine Learning Scikit-learn PyTorch Visualization Matplotlib Development Jupyter Notebook VS Code Git GitHub Installation
 1. Clone the Repository
-git clone https://github.com/tausif1320/adaptive-cost-sensitive-loss.git
+git clone [github.com/tausif1320/adaptive-cost-sensitive-loss.git](https://github.com/tausif1320/adaptive-cost-sensitive-loss.git)
 
 Move into the project directory:
 
@@ -932,9 +851,7 @@ Purpose:
 
 Build the neural-network baseline
 Train the MLP
-Evaluate standard and weighted loss approaches
-Notebook 4 — Results Summary
-04_results_summary.ipynb
+Evaluate standard and weighted loss approaches Notebook 4 — Results Summary 04_results_summary.ipynb
 
 Purpose:
 
@@ -947,10 +864,7 @@ Notebook 5 — Threshold vs Loss Experiment
 Purpose:
 
 Create a validation split
-Optimize decision thresholds using validation data
-Compare Random Forest and MLP approaches
-Compare standard BCE, weighted BCE, and adaptive loss
-Evaluate final performance on the untouched test set
+Optimize decision thresholds using validation data Compare Random Forest and MLP approaches Compare standard BCE, weighted BCE, and adaptive loss Evaluate final performance on the untouched test set
 
 This notebook contains the additional experiment used to investigate whether adaptive training provides value beyond threshold optimization.
 
@@ -962,8 +876,7 @@ The original notebooks establish the baseline methodology.
 
 Notebook 5 investigates a more specific question:
 
-Does adaptive cost-sensitive training provide
-additional value beyond threshold optimization?
+Does adaptive cost-sensitive training provide additional value beyond threshold optimization?
 
 This creates a cleaner experimental structure:
 
@@ -1037,6 +950,7 @@ Evaluate Once
 This provides a cleaner estimate of performance on unseen data.
 
 Key Learnings
+
 1. Business metrics can be as important as ML metrics
 
 A model should not always be optimized solely for accuracy or F1-score.
